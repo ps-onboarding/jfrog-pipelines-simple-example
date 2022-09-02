@@ -21,6 +21,8 @@ resources:
 
 pipelines:          
   - name: Use_The_CLI
+    configuration:
+
     steps:
       - name: test_cli
         type: Bash
@@ -28,10 +30,12 @@ pipelines:
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
             - name: myFirstRepo
+            - name: token_psemea
+            - name: token_fabienl
         execution:
           onStart:
-            - configure_jfrog_cli --artifactory-url https://fabienl.jfrog.io/artifactory --user fabienl@jfrog.com --access-token $token_fabienl --server-name fabienl
-            - configure_jfrog_cli --artifactory-url https://psemea.jfrog.io/artifactory --user fabienl@jfrog.com --access-token $token_psemea --server-name psemea
+            - configure_jfrog_cli --artifactory-url https://fabienl.jfrog.io/artifactory --user fabienl@jfrog.com --access-token int_token_fabienl_token_fabienl --server-name fabienl
+            - configure_jfrog_cli --artifactory-url https://psemea.jfrog.io/artifactory --user fabienl@jfrog.com --access-token int_token_psemea_token_psemea --server-name psemea
             - jfrog c s
             - jfrog rt dl Repo_diff_plugin/repo-diff --flat --server-id fabienl
             - cp repo-diff $HOME/.jfrog/plugins/repo-diff/bin/repo-diff 
