@@ -42,12 +42,11 @@ pipelines:
             - chmod +x repo-diff
             - ls /var/opt/jfrog/pipelines/jfrog2
             - export JFROG_CLI_HOME_DIR=/tmp
-            - ls /tmp
-            - ls /var/opt/jfrog/pipelines/jfrog2
-            - mkdir -p /tmp/.jfrog/plugins/repo-diff/bin
-            - cp repo-diff /tmp/.jfrog/plugins/repo-diff/bin/repo-diff 
+            - ls /tmp/jfrog
+            - mkdir -p /tmp/jfrog/plugins/repo-diff/bin
+            - cp repo-diff /tmp/jfrog/plugins/repo-diff/bin/repo-diff 
             - jf repo-diff 
-            - jfrog repo-diff diff create local psemea fabienl
+            - jf repo-diff diff create local psemea fabienl
           onExecute:
             # Data from input resources is available as env variables in the step
             - chmod +x repodiff
