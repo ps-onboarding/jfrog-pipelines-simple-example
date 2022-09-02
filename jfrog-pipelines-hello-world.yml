@@ -39,6 +39,7 @@ pipelines:
             - jfrog rt dl Repo_diff_plugin/repo-diff --flat --server-id fabienl
             - mkdir -p /tmp/.jfrog/plugins/repo-diff/bin
             - cp repo-diff /tmp/.jfrog/plugins/repo-diff/bin/repo-diff 
+            - jfrog repo-diff help
             - jfrog repo-diff diff create local psemea fabienl
           onExecute:
             # Data from input resources is available as env variables in the step
