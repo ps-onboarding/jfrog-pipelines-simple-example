@@ -32,6 +32,7 @@ pipelines:
             - name: token_fabienl
         execution:
           onStart:
+            - printenv int_token_fabienl_token_fabienl
             - configure_jfrog_cli --artifactory-url https://fabienl.jfrog.io/artifactory --user fabienl@jfrog.com --access-token int_token_fabienl_token_fabienl --server-name fabienl
             - configure_jfrog_cli --artifactory-url https://psemea.jfrog.io/artifactory --user fabienl@jfrog.com --access-token int_token_psemea_token_psemea --server-name psemea
             - jfrog c s
