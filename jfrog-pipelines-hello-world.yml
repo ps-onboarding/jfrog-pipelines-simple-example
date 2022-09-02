@@ -1,0 +1,42 @@
+template: true   # required for local templates.
+valuesFilePath: ./values.yml
+
+resources:
+  - name: myFirstRepo
+    type: GitRepo
+    configuration:
+      # SCM integration where the repository is located
+      gitProvider: {{ .Values.myRepo.gitProvider }} # this will be replaced from values.yml
+      # Repository path, including org name/repo name
+      path: {{ .Values.myRepo.path }} # this will be replaced from values.yml
+      branches:
+        # Specifies which branches will trigger dependent steps
+        include: master
+
+  - name: cron_trigger
+    type: CronTrigger
+    configuration:
+      interval: '*/5 * * * *'     # Every 5 minute
+
+
+pipelines:          
+  - name: Use_The_CLI
+    steps:
+      - name: test_cli
+        type: Bash
+        configuration:
+          inputResources:
+            # Sets up step to be triggered when there are commit events to myFirstRepo
+            - name: myFirstRepo
+        execution:
+          onStart:
+            - configure_jfrog_cli --artifactory-url https://fabienl.jfrog.io/artifactory --user fabienl@jfrog.com --access-token $token_fabienl --server-name fabienl
+            - configure_jfrog_cli --artifactory-url https://psemea.jfrog.io/artifactory --user fabienl@jfrog.com --access-token $token_pemea --server-name psemea
+            - jfrog c s
+            - jfrog rt dl Repo_diff_plugin/repodiff --flat --server-id fabienl
+            - jfrog plugin install repo-diff
+          onExecute:
+            # Data from input resources is available as env variables in the step
+            - chmod +x repodiff
+            #- ./repodiff diff create local fabienl psemea
+            - ls -all

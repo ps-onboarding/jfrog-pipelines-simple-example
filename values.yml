@@ -1,0 +1,3 @@
+myRepo:
+  gitProvider: jfrog_cli_pipeline
+  path: ps-onboarding/jfrog-pipelines-simple-example
