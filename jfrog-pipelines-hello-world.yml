@@ -40,9 +40,8 @@ pipelines:
             - jf c s
             - jf rt dl Repo_diff_plugin/repo-diff --flat --server-id fabienl
             - chmod +x repo-diff
-            - ls -all
-            - find . -name ".jfrog" || true
-            - find / -name ".jfrog" || true
+            - export JFROG_CLI_HOME_DIR = /tmp
+            - ls /tmp
             - mkdir -p /tmp/.jfrog/plugins/repo-diff/bin
             - cp repo-diff /tmp/.jfrog/plugins/repo-diff/bin/repo-diff 
             - jf repo-diff 
