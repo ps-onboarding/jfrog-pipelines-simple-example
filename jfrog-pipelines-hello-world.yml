@@ -21,8 +21,6 @@ resources:
 
 pipelines:          
   - name: Use_The_CLI
-    configuration:
-
     steps:
       - name: test_cli
         type: Bash
