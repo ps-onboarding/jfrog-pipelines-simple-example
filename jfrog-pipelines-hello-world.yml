@@ -46,7 +46,5 @@ pipelines:
             - jf repo-diff 
             - jf repo-diff diff create local psemea fabienl
           onExecute:
-            # Data from input resources is available as env variables in the step
-            - chmod +x repodiff
             #- ./repodiff diff create local fabienl psemea
             - ls -all
