@@ -29,9 +29,10 @@ pipelines:
         configuration:
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
-            - name: myFirstRepo
-            - name: token_psemea
-            - name: token_fabienl
+            - name: 
+              - myFirstRepo
+              - token_psemea
+              - token_fabienl
         execution:
           onStart:
             - configure_jfrog_cli --artifactory-url https://fabienl.jfrog.io/artifactory --user fabienl@jfrog.com --access-token int_token_fabienl_token_fabienl --server-name fabienl
