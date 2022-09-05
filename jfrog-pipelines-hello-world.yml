@@ -33,18 +33,22 @@ pipelines:
           integrations:
             - name: token_fabienl
             - name: token_psemea
+            - name: BitBucket_Acces_Token
         execution:
           onStart:
+            - git clone ssh://x-token-auth:${int_bitbucket_BitBucket_Acces_Token_AccessToken}@git.jfrog.info/profs/jfrog-cli-plugin-repodiff.git -b dev/fl/dev
+            - cd jfrog-cli-plugin-repodiff
+            - make build
             - configure_jfrog_cli --artifactory-url ${int_token_fabienl_url}/artifactory --access-token ${int_token_fabienl_accessToken} --server-name fabienl
             - configure_jfrog_cli --artifactory-url ${int_token_psemea_url}/artifactory --access-token ${int_token_psemea_accessToken} --server-name psemea
             - jf c s
-            - jf rt dl Repo_diff_plugin/repo-diff --flat --server-id fabienl
+            #- jf rt dl Repo_diff_plugin/repo-diff --flat --server-id fabienl
             - chmod +x repo-diff
             - ./repo-diff || true
             - mkdir -p /root/.jfrog/plugins/repo-diff/bin
             - cp repo-diff /root/.jfrog/plugins/repo-diff/bin/repo-diff 
             - jf repo-diff 
-            - jf repo-diff diff create local psemea fabienl
           onExecute:
+          - jf repo-diff diff create local psemea fabienl
             #- ./repodiff diff create local fabienl psemea
             - ls -all
