@@ -38,7 +38,7 @@ pipelines:
           onExecute:
             - jf rt ping pseme
 
-      - name: Ping_psemea
+      - name: Ping_fabienl
         type: Bash
         configuration:
           inputResources:
