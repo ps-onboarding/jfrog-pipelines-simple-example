@@ -57,15 +57,15 @@ pipelines:
       - name: test_cli
         type: Bash
         configuration:
+	        inputSteps:
+            - name: Ping_psemea
+            - name: Ping_fabienl
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
             - name: myFirstRepo
           integrations:
             - name: token_fabienl
             - name: token_pseme
-	        inputSteps:
-            - name: Ping_psemea
-            - name: Ping_fabienl
         execution:
           onStart:
             - configure_jfrog_cli --artifactory-url ${int_token_fabienl_url}/artifactory --access-token ${int_token_fabienl_accessToken} --server-name fabienl
