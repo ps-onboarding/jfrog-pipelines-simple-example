@@ -59,7 +59,7 @@ pipelines:
         configuration:
 	        inputSteps:
             - name: Ping_psemea
-            - name: Ping_fabienl
+#            - name: Ping_fabienl
 #          inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
 #            - name: myFirstRepo
