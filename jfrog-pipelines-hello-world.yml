@@ -36,7 +36,7 @@ pipelines:
           onStart:
             - configure_jfrog_cli --artifactory-url ${int_token_pseme_url}/artifactory --access-token ${int_token_pseme_accessToken} --server-name psemea
           onExecute:
-            - jf rt ping pseme
+            - jf rt ping --server-id pseme
 
       - name: Ping_fabienl
         type: Bash
@@ -50,7 +50,7 @@ pipelines:
           onStart:
             - configure_jfrog_cli --artifactory-url ${int_token_fabienl_url}/artifactory --access-token ${int_token_fabienl_accessToken} --server-name fabienl
           onExecute:
-            - jf rt ping fabienl
+            - jf rt ping --server-id fabienl
 #Download the plugin
 
 #Execute the plugin
@@ -59,13 +59,13 @@ pipelines:
         configuration:
 	        inputSteps:
             - name: Ping_psemea
-#            - name: Ping_fabienl
-#          inputResources:
+            - name: Ping_fabienl
+          inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
-#            - name: myFirstRepo
-#          integrations:
-#            - name: token_fabienl
-#            - name: token_pseme
+            - name: myFirstRepo
+          integrations:
+            - name: token_fabienl
+            - name: token_pseme
         execution:
           onStart:
             - configure_jfrog_cli --artifactory-url ${int_token_fabienl_url}/artifactory --access-token ${int_token_fabienl_accessToken} --server-name fabienl
