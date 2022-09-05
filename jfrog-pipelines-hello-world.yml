@@ -12,9 +12,6 @@ resources:
       branches:
         # Specifies which branches will trigger dependent steps
         include: master
-      integrations:
-        - name: token_fabienl
-        - name: token_pseme
 
   - name: cron_trigger
     type: CronTrigger
@@ -33,6 +30,8 @@ pipelines:
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
             - name: myFirstRepo
+          integrations:
+            - name: token_pseme
         execution:
           onStart:
             - configure_jfrog_cli --artifactory-url ${int_token_pseme_url}/artifactory --access-token ${int_token_pseme_accessToken} --server-name psemea
@@ -45,6 +44,8 @@ pipelines:
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
             - name: myFirstRepo
+          integrations:
+            - name: token_fabienl
         execution:
           onStart:
             - configure_jfrog_cli --artifactory-url ${int_token_fabienl_url}/artifactory --access-token ${int_token_fabienl_accessToken} --server-name fabienl
@@ -59,6 +60,9 @@ pipelines:
           inputResources:
             # Sets up step to be triggered when there are commit events to myFirstRepo
             - name: myFirstRepo
+          integrations:
+            - name: token_fabienl
+            - name: token_pseme
         execution:
           onStart:
             - configure_jfrog_cli --artifactory-url ${int_token_fabienl_url}/artifactory --access-token ${int_token_fabienl_accessToken} --server-name fabienl
