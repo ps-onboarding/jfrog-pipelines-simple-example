@@ -49,6 +49,5 @@ pipelines:
             - cp repo-diff /root/.jfrog/plugins/repo-diff/bin/repo-diff 
             - jf repo-diff 
           onExecute:
-          - jf repo-diff diff create local psemea fabienl
-            #- ./repodiff diff create local fabienl psemea
+            - jf repo-diff diff create local psemea fabienl
             - ls -all
