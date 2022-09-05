@@ -63,6 +63,9 @@ pipelines:
           integrations:
             - name: token_fabienl
             - name: token_pseme
+	        inputSteps:
+            - name: Ping_psemea
+            - name: Ping_fabienl
         execution:
           onStart:
             - configure_jfrog_cli --artifactory-url ${int_token_fabienl_url}/artifactory --access-token ${int_token_fabienl_accessToken} --server-name fabienl
