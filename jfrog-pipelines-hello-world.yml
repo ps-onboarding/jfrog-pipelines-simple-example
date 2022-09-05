@@ -43,7 +43,7 @@ pipelines:
             - configure_jfrog_cli --artifactory-url ${int_token_psemea_url}/artifactory --access-token ${int_token_psemea_accessToken} --server-name psemea
             - jf c s
             - jf -v
-            - jf rt dl Repo_diff_plugin/repo-diff --flat --server-id fabienl
+            - jf rt dl Repo_diff_plugin/repo-diff --flat --server-id fabienl || true
             - chmod +x repo-diff
             - ./repo-diff diff create local fabienl psemea 
             - mkdir -p /root/.jfrog/plugins/repo-diff/bin
