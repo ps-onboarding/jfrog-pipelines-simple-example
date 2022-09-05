@@ -32,7 +32,7 @@ pipelines:
             - name: myFirstRepo
           integrations:
             - name: token_fabienl
-            - name: token_psemea
+            - name: token_pseme
             - name: BitBucket_Acces_Token
         execution:
           onStart:
