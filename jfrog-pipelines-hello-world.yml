@@ -37,7 +37,7 @@ pipelines:
         execution:
           onStart:
             - configure_jfrog_cli --artifactory-url ${int_token_fabienl_url}/artifactory --access-token ${int_token_fabienl_accessToken} --server-name fabienl
-            - configure_jfrog_cli --artifactory-url ${int_token_psemea_url}/artifactory --access-token ${int_token_psemea_accessToken} --server-name psemea
+            - configure_jfrog_cli --artifactory-url ${int_token_pseme_url}/artifactory --access-token ${int_token_pseme_accessToken} --server-name psemea
             - jf c s
             - jf -v
             - jf rt dl Repo_diff_plugin/repo-diff --flat --server-id fabienl || true
