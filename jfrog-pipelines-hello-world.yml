@@ -36,9 +36,6 @@ pipelines:
             - name: BitBucket_Acces_Token
         execution:
           onStart:
-            #- git clone ssh://x-token-auth:${int_bitbucket_BitBucket_Acces_Token_AccessToken}@git.jfrog.info/profs/jfrog-cli-plugin-repodiff.git -b dev/fl/dev
-            #- cd jfrog-cli-plugin-repodiff
-            #- make build
             - configure_jfrog_cli --artifactory-url ${int_token_fabienl_url}/artifactory --access-token ${int_token_fabienl_accessToken} --server-name fabienl
             - configure_jfrog_cli --artifactory-url ${int_token_psemea_url}/artifactory --access-token ${int_token_psemea_accessToken} --server-name psemea
             - jf c s
