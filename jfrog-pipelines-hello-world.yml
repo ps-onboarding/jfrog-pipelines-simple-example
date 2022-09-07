@@ -36,7 +36,7 @@ pipelines:
           onStart:
             - configure_jfrog_cli --artifactory-url ${int_token_pseme_url}/artifactory --access-token ${int_token_pseme_accessToken} --server-name psemea
           onExecute:
-            - jf rt ping --server-id pseme
+            - jf rt ping --server-id psemea
 
       - name: Ping_fabienl
         type: Bash
