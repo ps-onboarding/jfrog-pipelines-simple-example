@@ -18,7 +18,26 @@ resources:
     configuration:
       interval: '*/5 * * * *'     # Every 5 minutes
 
-pipelines:          
+pipelines:
+  - name: Just_ping
+    configuration:
+      jfrogCliVersion: 2
+    steps:
+#Ping instances
+      - name: Ping_psemea
+        type: Bash
+        configuration:
+          inputResources:
+            # Sets up step to be triggered when there are commit events to myFirstRepo
+            - name: cron_trigger
+          integrations:
+            - name: token_pseme
+        execution:
+          onStart:
+            - configure_jfrog_cli --artifactory-url ${int_token_pseme_url}/artifactory --access-token ${int_token_pseme_accessToken} --server-name psemea
+          onExecute:
+            - jf rt ping --server-id psemea
+       
   - name: Use_The_CLI
     configuration:
       jfrogCliVersion: 2
