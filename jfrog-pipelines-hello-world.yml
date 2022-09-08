@@ -16,7 +16,7 @@ resources:
   - name: cron_trigger
     type: CronTrigger
     configuration:
-      interval: '*/5 * * * *'     # Every 5 minutes
+      interval: '0 0 * * *'     # Once a day
 
 pipelines:
   - name: Just_ping
